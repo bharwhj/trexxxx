@@ -46,6 +46,8 @@ function setup() {
      reset=createSprite(250,80);
     reset.addImage("reset",resetbutton)
     gameover.addImage("go",gameover1)
+  gameover.scale=0.6
+  reset.scale=0.4
   gameover.visible=false;
   reset.visible=false;
   
@@ -67,9 +69,10 @@ function draw() {
   if (gamestate===PLAY)
   {
       
-  if(keyDown("space")) 
+  if(keyDown("space")&& trex.y>150) 
   {
     trex.velocityY = -10;
+    trex.velocityY = trex.velocityY + 0.8
   }
   trex.velocityY = trex.velocityY + 0.8
     
@@ -106,7 +109,7 @@ function draw() {
     cloudsGroup.setLifetimeEach(-1)
     
       trex.changeAnimation("collided",trex_collided)
-    
+      trex.velocityY=0
 gameover.visible=true;
 reset.visible=true;  
   }
@@ -181,7 +184,7 @@ function reset1()
   gameover.visible=false;
   reset.visible=false;
       trex.changeAnimation("running",trex_running)
-  count=0
+  score=0
   
   
   
